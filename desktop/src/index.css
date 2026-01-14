@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Electric Nord Base - Brightened */
+  --nord-bg: #3B4252;
+  --nord-bg-light: #434C5E;
+  --nord-selection: #5E6779;
+  --nord-fg: #FFFFFF;
+  --nord-fg-dim: #ECEFF4;
+
+  /* Electric ANSI */
+  --electric-red: #FF5C57;
+  --electric-green: #5AF78E;
+  --electric-yellow: #F3F99D;
+  --electric-blue: #57C7FF;
+  --electric-purple: #FF6AC1;
+  --electric-cyan: #9AEDFE;
+  --electric-cursor: #D4A04A;
+
+  /* Bright variants */
+  --bright-red: #FF6E67;
+  --bright-green: #5AF78E;
+  --bright-yellow: #F3F99D;
+  --bright-blue: #57C7FF;
+  --bright-purple: #FF92DF;
+  --bright-cyan: #A4FFFF;
+
+  /* Model brand colors */
+  --claude-orange: #E07B39;
+  --codex-white: #F1F1F0;
+  --codex-gray: #9CA3AF;
+  --gemini-purple: #726F9F;
+
+  /* Tailwind mappings - Brightened */
+  --background: 220 16% 28%;
+  --foreground: 0 0% 100%;
+  --border: 220 16% 34%;
+  --primary: 199 100% 67%;
+  --primary-foreground: 220 16% 28%;
+  --muted: 220 16% 32%;
+  --muted-foreground: 219 28% 94%;
+  --accent: 220 16% 36%;
+  --accent-foreground: 0 0% 100%;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nord-selection) var(--nord-bg);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--nord-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--nord-selection);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-cyan);
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: 'JetBrains Mono', 'CodeNewRoman Nerd Font Mono', monospace;
+  font-size: 13px;
+  line-height: 1.2;
+  background: var(--nord-bg);
+  color: var(--nord-fg);
+}
+
+/* Glow effects */
+.glow-red {
+  box-shadow: 0 0 20px rgba(255, 92, 87, 0.3), 0 0 40px rgba(255, 92, 87, 0.1);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(90, 247, 142, 0.3), 0 0 40px rgba(90, 247, 142, 0.1);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(87, 199, 255, 0.3), 0 0 40px rgba(87, 199, 255, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(255, 106, 193, 0.3), 0 0 40px rgba(255, 106, 193, 0.1);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(154, 237, 254, 0.3), 0 0 40px rgba(154, 237, 254, 0.1);
+}
+
+.glow-yellow {
+  box-shadow: 0 0 20px rgba(243, 249, 157, 0.3), 0 0 40px rgba(243, 249, 157, 0.1);
+}
+
+/* Text glow */
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(255, 92, 87, 0.5);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(90, 247, 142, 0.5);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(87, 199, 255, 0.5);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(255, 106, 193, 0.5);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(154, 237, 254, 0.5);
+}
+
+/* Scanline effect */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Noise texture overlay */
+.noise {
+  position: relative;
+}
+
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  background: var(--nord-bg-light);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--electric-cyan), var(--electric-purple), var(--electric-red));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Status indicator */
+.status-online {
+  position: relative;
+}
+
+.status-online::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--electric-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--electric-green);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Electric accent colors for models */
+.text-claude { color: var(--claude-orange); }
+.text-codex { color: var(--codex-white); }
+.text-gemini { color: var(--gemini-purple); }
+
+.bg-claude { background-color: var(--claude-orange); }
+.bg-codex { background-color: var(--codex-white); }
+.bg-gemini { background-color: var(--gemini-purple); }
+
+.border-claude { border-color: var(--claude-orange); }
+.border-codex { border-color: var(--codex-gray); }
+.border-gemini { border-color: var(--gemini-purple); }
+
+/* Glow effects for models */
+.glow-claude {
+  box-shadow: 0 0 20px rgba(224, 123, 57, 0.3), 0 0 40px rgba(224, 123, 57, 0.1);
+}
+
+.glow-codex {
+  box-shadow: 0 0 20px rgba(241, 241, 240, 0.2), 0 0 40px rgba(241, 241, 240, 0.05);
+}
+
+.glow-gemini {
+  box-shadow: 0 0 20px rgba(114, 111, 159, 0.3), 0 0 40px rgba(114, 111, 159, 0.1);
+}
+
+.text-glow-claude {
+  text-shadow: 0 0 10px rgba(224, 123, 57, 0.5);
+}
+
+.text-glow-codex {
+  text-shadow: 0 0 10px rgba(241, 241, 240, 0.3);
+}
+
+.text-glow-gemini {
+  text-shadow: 0 0 10px rgba(114, 111, 159, 0.5);
+}
+
+/* Override Tailwind for model colors in sidebar */
+.text-orange-400 { color: var(--claude-orange) !important; }
+.text-green-400 { color: var(--codex-white) !important; }
+.text-blue-400 { color: var(--gemini-purple) !important; }
+
+.bg-orange-400 { background-color: var(--claude-orange) !important; }
+.bg-green-400 { background-color: var(--codex-white) !important; }
+.bg-blue-400 { background-color: var(--gemini-purple) !important; }
+
+.hover\:border-orange-400\/50:hover { border-color: rgba(224, 123, 57, 0.5) !important; }
+.hover\:border-green-400\/50:hover { border-color: rgba(241, 241, 240, 0.3) !important; }
+.hover\:border-blue-400\/50:hover { border-color: rgba(114, 111, 159, 0.5) !important; }
